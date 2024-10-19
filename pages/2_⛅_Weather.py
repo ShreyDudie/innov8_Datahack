@@ -74,13 +74,13 @@ else:
             else:
                 fig = plot_temperatures(days, temp_min, temp_max)
             st.plotly_chart(fig)
-            st.title("Minimum and Maximum Temperatures")
+            st.write("### Minimum and Maximum Temperatures")
             for i in range(len(temp_min)):
-                st.write(f"### {temp_min[i]}{degree_sign} --- {temp_max[i]}{degree_sign}")
+                st.write(f"{temp_min[i]}{degree_sign} --- {temp_max[i]}{degree_sign}")
 
         def display_other_updates():
             forecaster = mgr.forecast_at_place(place, '3h')
-            st.title("Impending Weather Alerts:")
+            st.write("### Impending Weather Alerts:")
             alerts = {
                 "will_have_fog": "FOG Alert!",
                 "will_have_rain": "Rain Alert",
@@ -93,23 +93,23 @@ else:
             }
             for key, message in alerts.items():
                 if getattr(forecaster, key)():
-                    st.write(f"### {message}")
+                    st.write(f"{message}")
 
         def display_cloud_and_wind():
             obs = mgr.weather_at_place(place)
             weather = obs.weather
-            st.title("Cloud Coverage and Wind Speed")
-            st.write(f'### The current cloud coverage for {place} is {weather.clouds}%.')
-            st.write(f'### The current wind speed for {place} is {weather.wind()["speed"]} mph.')
+            st.write("### Cloud Coverage and Wind Speed")
+            st.write(f'The current cloud coverage for {place} is {weather.clouds}%.')
+            st.write(f'The current wind speed for {place} is {weather.wind()["speed"]} mph.')
 
         def display_sunrise_and_sunset():
             obs = mgr.weather_at_place(place)
             weather = obs.weather
-            st.title("Sunrise and Sunset Times:")
+            st.write("### Sunrise and Sunset Times:")
             sr = datetime.fromtimestamp(weather.sunrise_time()).astimezone(pytz.timezone("Asia/Kolkata"))
             ss = datetime.fromtimestamp(weather.sunset_time()).astimezone(pytz.timezone("Asia/Kolkata"))
-            st.write(f"### Sunrise time in {place} is {sr.strftime('%Y-%m-%d %H:%M:%S')} IST.")
-            st.write(f"### Sunset time in {place} is {ss.strftime('%Y-%m-%d %H:%M:%S')} IST.")
+            st.write(f"ESTIMATED Sunrise time in {place} is {sr.strftime('%Y-%m-%d %H:%M:%S')} IST.")
+            st.write(f"ESTIMATED Sunset time in {place} is {ss.strftime('%Y-%m-%d %H:%M:%S')} IST.")
 
         if st.button("SUBMIT"):
             draw_chart()
