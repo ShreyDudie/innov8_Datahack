@@ -1,5 +1,6 @@
 import streamlit as st
 
+st.logo(image='assets/logo.png', size='large')
 st.set_page_config(page_title='Reviews',page_icon='👤')
 st.title('Reviews')
 st.subheader('Share your experience with our service')
@@ -16,6 +17,7 @@ if st.button('Submit Review'):
         reviewcontainer = st.container(border=True)
         reviewcontainer.write(f"**YOUR Review:** {review}")
         reviewcontainer.write(f"**YOUR Rating:** {st.session_state.rating} stars")
+        yourreview = {'name': name, 'review': review, 'rating': st.session_state.rating}
     else:
         st.error("Please provide a rating, name, and review.")
 
@@ -33,4 +35,5 @@ for review in reviews:
     st.write(f"Review: {review['review']}")
     st.write(f"Rating: {review['rating']} stars")
     st.markdown("---")
+
 
