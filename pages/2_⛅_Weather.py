@@ -7,7 +7,7 @@ import pyowm
 import streamlit as st
 from datetime import datetime
 import plotly.graph_objects as go
-
+st.logo(image='assets/logo.png', size='large')
 # Fetch the API key 
 API_KEY = 'd771edcecc8137cb7df3ef306e84068d'
 if not API_KEY:
@@ -21,7 +21,7 @@ mgr = owm.weather_manager()
 degree_sign = u'\N{DEGREE SIGN}'
 
 # Streamlit UI
-st.write("Write the name of a City and select the Temperature Unit and Graph Type from the sidebar")
+st.write("Enterthe name of a City and select the Temperature Unit and Graph Type from the sidebar")
 
 place = st.text_input("NAME OF THE CITY :", "")
 place.lower()
